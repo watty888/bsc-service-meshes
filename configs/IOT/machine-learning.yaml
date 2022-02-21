@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: machine-learning
+    version: v1
+  name: machine-learning-v1
+spec:
+  replicas: 1
+  strategy: {}
+  selector:
+    matchLabels:
+      app: machine-learning
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: machine-learning
+        version: v1
+    spec:
+      containers:
+        - image: watty888/machine-learning:v1.1
+          name: machine-learning-v1
+          ports:
+            - containerPort: 3001
+          resources: {}
+      restartPolicy: Always
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: machine-learning
+    version: v2
+  name: machine-learning-v2
+spec:
+  replicas: 1
+  strategy: {}
+  selector:
+    matchLabels:
+      app: machine-learning
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: machine-learning
+        version: v2
+    spec:
+      containers:
+        - image: watty888/machine-learning:v2.1
+          name: machine-learning-v2
+          ports:
+            - containerPort: 3001
+          resources: {}
+      restartPolicy: Always
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: machine-learning
+  name: machine-learning
+spec:
+  type: NodePort
+  ports:
+    - port: 3001
+      nodePort: 30003
+      targetPort: 3001
+  selector:
+    app: machine-learning
+status:
+  loadBalancer: {}

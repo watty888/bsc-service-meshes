@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<script>
+
+    async function main()
+    {
+        var res = await fetch('http://localhost:8080/api/v1/webservice');
+        var data = await res.json();
+
+        var filteredMessage = data.map(entry => { return {id: entry.id, topic: entry.topic, message: entry.body}});
+        console.log(filteredMessage);
+        data = JSON.stringify(data);
+
+        document.write("Messages:");
+        document.write (' <br> ');
+
+
+
+        var ta = new Map();
+        var tp = new Map();
+        var wa = new Map();
+        var wp = new Map();
+        var x = data;
+
+        while (x.includes("id"))
+        {
+        tmp = x.substring(x.indexOf("id")+5,x.indexOf(",")-1);
+
+        x = x.substring(x.indexOf("topic"),x.length);
+
+        tmp1 = x.substring(x.indexOf("topic")+8,x.indexOf(",")-1);
+
+        x = x.substring(x.indexOf("body"),x.length);
+
+        tmp2 = x.substring(x.indexOf("body")+7,x.indexOf("}")-1);
+
+
+        if(x.includes("id"))
+            x = x.substring(x.indexOf("id"),x.length);
+
+        if(tmp1 == "TEMPERATURE_ANOMALY"){
+            ta.set(tmp, tmp2);
+        }
+        else if(tmp1 == "TEMPERATURE_PREDICTION"){
+            tp.set(tmp, tmp2);
+        }
+        else if(tmp1 == "WEATHER_ANOMALY"){
+            wa.set(tmp, tmp2);
+        }
+        else if(tmp1 == "WEATHER_PREDICTION"){
+            wp.set(tmp, tmp2);
+        }
+    }
+
+
+        document.write (' <br> ');
+        document.write("Temperature anomalies:");
+        document.write (' <br> ');
+
+        if(ta.size == 0){
+            document.write("no entries");
+            document.write (' <br> ');
+        }
+        else {
+            for (var [key, value] of ta) {
+                document.write("id:" + key + "; body: " + value);
+                document.write(' <br> ');
+            }
+        }
+        document.write (' <br> ');
+        document.write("Temperature predictions:");
+        document.write (' <br> ');
+
+        if(tp.size == 0){
+            document.write("no entries");
+            document.write (' <br> ');
+        }
+        else{
+        for (var [key, value] of tp) {
+            document.write("id:" + key + "; body: " + value);
+            document.write (' <br> ');
+        }}
+
+        document.write (' <br> ');
+        document.write("Weather anomalies:");
+        document.write (' <br> ');
+
+        if(wa.size == 0){
+            document.write("no entries");
+            document.write (' <br> ');
+        }
+        else{
+        for (var [key, value] of wa) {
+            document.write("id:" + key + "; body: " + value);
+            document.write (' <br> ');
+        }}
+
+        document.write (' <br> ');
+        document.write("Weather predictions:");
+        document.write (' <br> ');
+
+        if(wp.size == 0){
+            document.write("no entries");
+            document.write (' <br> ');
+        }
+        else{
+        for (var [key, value] of wp) {
+            document.write("id:" + key + "; body: " + value);
+            document.write (' <br> ');
+        }}
+
+        return data;
+    }
+
+    main();
+
+
+</script>
+</body>
+</html>

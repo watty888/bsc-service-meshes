@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: mq-ciructuit-breaker
+spec:
+  host: message-queue
+  trafficPolicy:
+    connectionPool:
+      http:
+        http1MaxPendingRequests: 10
+        maxRequestsPerConnection: 3
+      tcp:
+        maxConnections: 1

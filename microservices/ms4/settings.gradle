@@ -1,0 +1,3 @@
+includeFlat "shared_components"
+
+rootProject.name = 'machine_learning_microservice'

@@ -1,0 +1,4 @@
+includeFlat "shared_components"
+
+rootProject.name = 'iot_microservice'
+

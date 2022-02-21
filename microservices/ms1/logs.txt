@@ -1,0 +1,6 @@
+2021-11-21 02:57:17.953  INFO 26261 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-11-21 20:23:17.181  INFO 80809 --- [Test worker] d.m.MessageQueueServiceApplicationTests  : Starting MessageQueueServiceApplicationTests on Elchins-MBP with PID 80809 (started by elcinbunyatov in /Users/elcinbunyatov/Desktop/das_studium/myawesomebachelor/implementation/ms1)
+2021-11-21 20:23:17.184  INFO 80809 --- [Test worker] d.m.MessageQueueServiceApplicationTests  : No active profile set, falling back to default profiles: default
+2021-11-21 20:23:19.228  INFO 80809 --- [Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-11-21 20:23:19.848  INFO 80809 --- [Test worker] d.m.MessageQueueServiceApplicationTests  : Started MessageQueueServiceApplicationTests in 3.58 seconds (JVM running for 5.054)
+2021-11-21 20:23:20.690  INFO 80809 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'

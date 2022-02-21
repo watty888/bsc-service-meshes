@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: simulation
+  name: simulation
+spec:
+  replicas: 1
+  strategy: {}
+  selector:
+    matchLabels:
+      app: simulation
+  template:
+    metadata:
+      labels:
+        app: simulation
+    spec:
+      containers:
+        - image: watty888/simulation
+          name: simulation
+          ports:
+            - containerPort: 3001
+          resources: {}
+      restartPolicy: Always
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: simulation
+  name: simulation
+spec:
+  type: NodePort
+  ports:
+    - port: 3001
+      nodePort: 30001
+      targetPort: 3001
+  selector:
+    app: simulation
+status:
+  loadBalancer: {}

@@ -1,0 +1,3 @@
+includeFlat "shared_components"
+
+rootProject.name = 'mqm_service'

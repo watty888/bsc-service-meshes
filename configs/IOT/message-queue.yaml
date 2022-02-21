@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: message-queue
+  name: message-queue
+spec:
+  replicas: 1
+  strategy: {}
+  selector:
+    matchLabels:
+      app: message-queue
+  template:
+    metadata:
+      labels:
+        app: message-queue
+    spec:
+      containers:
+        - image: watty888/message-queue
+          name: message-queue
+          ports:
+            - containerPort: 3001
+          resources: {}
+      restartPolicy: Always
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: message-queue
+  name: message-queue
+spec:
+  type: NodePort
+  ports:
+    - port: 3001
+      nodePort: 30002
+      targetPort: 3001
+  selector:
+    app: message-queue
+status:
+  loadBalancer: {}

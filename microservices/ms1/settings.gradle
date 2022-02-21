@@ -1,0 +1,3 @@
+includeFlat "shared_components"
+
+rootProject.name = 'message_queue_service'
